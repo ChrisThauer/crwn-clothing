@@ -11,3 +11,17 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
   // If item is not in cart, add the cart item to the existing array with a base quantity of 1
   return [...cartItems, {...cartItemToAdd, quantity: 1}]
 };
+
+export const removeItemFromCart = (cartItems, cartItemToRemove) => {
+  const existingCartItem = cartItems.find(cartItem => cartItem.id === cartItemToRemove.id);
+
+  if (existingCartItem.quantity > 1) {
+    return cartItems.map(cartItem =>
+      cartItem.id === existingCartItem.id ?
+        { ...cartItem, quantity: cartItem.quantity - 1 }
+        : cartItem
+    )
+  }
+
+  return cartItems;
+};
