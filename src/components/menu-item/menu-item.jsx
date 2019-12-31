@@ -1,16 +1,22 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import './menu-item.scss';
+import {
+  MenuItemContainer,
+  BackgroundImage,
+  ContentContainer,
+  SubtitleContainer,
+  TitleContainer
+} from './menu-item.styles';
 
 const MenuItem = ({ title, imageUrl, size, history, linkUrl, match }) => (
-  <div className={`menu-item ${size}`} onClick={() => history.push(`${match.url}${linkUrl}`) }>
-    <div style={{backgroundImage: `url(${imageUrl})`}} className="background-image"></div>
-    <div className="content">
-      <h1 className="title">{title.toUpperCase()}</h1>
-      <span className="subtitle">SHOP NOW</span>
-    </div>
-  </div>
+  <MenuItemContainer size={size} onClick={() => history.push(`${match.url}${linkUrl}`)}>
+    <BackgroundImage className="background-image" imageUrl={imageUrl} />
+    <ContentContainer className="content">
+      <TitleContainer>{title.toUpperCase()}</TitleContainer>
+      <SubtitleContainer>SHOP NOW</SubtitleContainer>
+    </ContentContainer>
+  </MenuItemContainer>
 );
 
 export default withRouter(MenuItem);
